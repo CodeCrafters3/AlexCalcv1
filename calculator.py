@@ -38,7 +38,7 @@ def remainder(x, y):
 
 def get_name():
     load_dotenv()
-    name = os.getenv('name1')
+    name = os.getenv('USER_NAME')
     return name
 
 
