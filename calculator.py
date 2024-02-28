@@ -47,7 +47,7 @@ def calculator():
     while True:
 
         name = get_name()
-        print(f'Welcome in my calculator {name}!')
+        print(f'Welcome in my simple calculator {name}!')
 
         print("Choose an operation you want to execute:\n"
               "1 - addition\n"
