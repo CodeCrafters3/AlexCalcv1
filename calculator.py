@@ -2,37 +2,48 @@ from enum import IntEnum
 from dotenv import load_dotenv
 import os
 
+history = []
+
 
 def addition(x, y):
+    history.append(f'{x} + {y} = {x + y}')
     return x + y
 
 
 def subtraction(x, y):
+    history.append(f'{x} - {y} = {x - y}')
     return x - y
 
 
 def multiplication(x, y):
+    history.append(f'{x} * {y} = {x * y}')
     return x * y
 
 
 def division(x, y):
     if y == 0:
+        history.append('Error - division by 0')
         return "Error - division by 0"
     else:
+        history.append(f'{x} / {y} = {x / y}')
         return x / y
 
 
 def exponentiation(x, y):
     if y == 0:
+        history.append(f'{x} ** {y} = 1')
         return 1
     else:
+        history.append(f'{x} ** {y} = {x ** y}')
         return x ** y
 
 
 def remainder(x, y):
     if y == 0:
+        history.append('Error - division by 0')
         return "Error - division by 0"
     else:
+        history.append(f'{x} % {y} = {x % y}')
         return x % y
 
 
@@ -44,10 +55,10 @@ def get_name():
 
 def calculator():
 
-    while True:
+    name = get_name()
+    print(f'Welcome in my calculator {name}!')
 
-        name = get_name()
-        print(f'Welcome in my calculator {name}!')
+    while True:
 
         print("Choose an operation you want to execute:\n"
               "1 - addition\n"
@@ -68,6 +79,11 @@ def calculator():
             "Exit"]
 
         Menu = IntEnum("Menu", operations)
+
+        print('History of operations: ')
+
+        for operation in history:
+            print(operation)
 
         choice = int(input("Number of operation you want to execute: "))
 
