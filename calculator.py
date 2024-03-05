@@ -115,7 +115,7 @@ def calculator():
             if len(history) > 0:
                 download_operations_history()
                 print("File with operation's history has been downloaded")
-                print("Please remember copying operation's history file to your personal directory before conducting another history downloading operation")
+                print("Please remember copying history file to your personal directory before conducting another history downloading operation")
                 print(
                     "Please note that operations that ended with 'Error' are not included in downloaded file")
             else:
