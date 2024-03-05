@@ -3,20 +3,24 @@ from dotenv import load_dotenv
 import os
 
 history = []
+history_for_csv = []
 
 
 def addition(x, y):
     history.append(f'{x} + {y} = {x + y}')
+    history_for_csv.append([x, "addition", y, x + y])
     return x + y
 
 
 def subtraction(x, y):
     history.append(f'{x} - {y} = {x - y}')
+    history_for_csv.append([x, "subtraction", y, x - y])
     return x - y
 
 
 def multiplication(x, y):
     history.append(f'{x} * {y} = {x * y}')
+    history_for_csv.append([x, "multiplication", y, x * y])
     return x * y
 
 
@@ -26,15 +30,18 @@ def division(x, y):
         return "Error - division by 0"
     else:
         history.append(f'{x} / {y} = {x / y}')
+        history_for_csv.append([x, "division", y, x / y])
         return x / y
 
 
 def exponentiation(x, y):
     if y == 0:
         history.append(f'{x} ** {y} = 1')
+        history_for_csv.append([x, "exponentiation", y, 1])
         return 1
     else:
         history.append(f'{x} ** {y} = {x ** y}')
+        history_for_csv.append([x, "exponentiation", y, x ** y])
         return x ** y
 
 
@@ -44,6 +51,7 @@ def remainder(x, y):
         return "Error - division by 0"
     else:
         history.append(f'{x} % {y} = {x % y}')
+        history_for_csv.append([x, "remainder", y, x % y])
         return x % y
 
 
@@ -51,6 +59,15 @@ def get_name():
     load_dotenv()
     name = os.getenv('USER_NAME')
     return name
+
+
+def download_operations_history():
+    with open("operations_history.csv", "w", encoding="UTF-8") as file:
+        for operation in history_for_csv:
+            for element in operation:
+                file.write(str(element))
+                file.write(",")
+            file.write("\n")
 
 
 def calculator():
@@ -67,7 +84,8 @@ def calculator():
               "4 - division\n"
               "5 - exponentiation\n"
               "6 - remainder from division\n"
-              "7 - exit")
+              "7 - download .csv file with history of operations\n"
+              "8 - exit")
 
         operations = [
             "Addition",
@@ -76,6 +94,7 @@ def calculator():
             "Division",
             "Exponentiation",
             "Remainder",
+            "Download_history",
             "Exit"]
 
         Menu = IntEnum("Menu", operations)
@@ -92,6 +111,16 @@ def calculator():
             break
         elif choice not in range(1, len(operations) + 1):
             print("There isn't such an operation, choose other one.")
+        elif choice == Menu.Download_history:
+            if len(history) > 0:
+                download_operations_history()
+                print("File with operation's history has been downloaded")
+                print("Please remember copying operation's history file to your personal directory before conducting another history downloading operation")
+                print(
+                    "Please note that operations that ended with 'Error' are not included in downloaded file")
+            else:
+                print(
+                    "Conduct any operations to be able to download operation's history")
         else:
 
             x = float(input("Enter the first number: "))
