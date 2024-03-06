@@ -1,8 +1,10 @@
 from enum import IntEnum
 from dotenv import load_dotenv
 import os
+import csv
 
 history = []
+fields = ['x', 'operation', 'y', 'result']
 history_for_csv = []
 
 
@@ -63,11 +65,9 @@ def get_name():
 
 def download_operations_history():
     with open("operations_history.csv", "w", encoding="UTF-8") as file:
-        for operation in history_for_csv:
-            for element in operation:
-                file.write(str(element))
-                file.write(",")
-            file.write("\n")
+        csv_writer = csv.writer(file)
+        csv_writer.writerow(fields)
+        csv_writer.writerows(history_for_csv)
 
 
 def calculator():
