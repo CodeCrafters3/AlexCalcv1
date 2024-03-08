@@ -15,11 +15,7 @@ def get_name():
 
 def main():
 
-    possibilities = [
-        'Classic_calculator',
-        'Geometrical_calculator',
-        'Show_operations_history',
-        'Exit']
+    possibilities = ['Classic_calculator', 'Geometrical_calculator', 'Show_operations_history', 'Exit']
 
     Possibilities_menu = IntEnum('Possibilities_menu', possibilities)
 
@@ -33,9 +29,8 @@ def main():
               "2 - geometrical calculator\n"
               "3 - show operations history\n"
               "4 - exit")
-
-        choice = int(
-            input("Number of the type of calculator you want to use: "))
+        
+        choice = int(input("Number of the type of calculator you want to use: "))
 
         if choice == Possibilities_menu.Classic_calculator:
             classic_calculator.classic_calculator(history)
@@ -44,12 +39,17 @@ def main():
         elif choice == Possibilities_menu.Show_operations_history:
             print("History of operations: ")
             for operation in history:
-                print(operation)
+                print(operation)    
         elif choice == Possibilities_menu.Exit:
             print("Calculator has been closed")
             break
         else:
             print("There isn't such an operation, choose other one.")
+              
+
+
+
+
 
 
 if __name__ == "__main__":

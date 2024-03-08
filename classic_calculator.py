@@ -75,17 +75,16 @@ def classic_calculator(history):
 
     while True:
 
-        print(
-            "Choose an operation you want to execute:\n"
-            "1 - addition\n"
-            "2 - subtraction\n"
-            "3 - multipliaction\n"
-            "4 - division\n"
-            "5 - exponentiation\n"
-            "6 - remainder from division\n"
-            "7 - show operations history from classic calculator\n"
-            "8 - download .csv file with history of operations from classic calculator\n"
-            "9 - back to previous menu")
+        print("Choose an operation you want to execute:\n"
+              "1 - addition\n"
+              "2 - subtraction\n"
+              "3 - multipliaction\n"
+              "4 - division\n"
+              "5 - exponentiation\n"
+              "6 - remainder from division\n"
+              "7 - show operations history from classic calculator\n"
+              "8 - download .csv file with history of operations from classic calculator\n"
+              "9 - back to previous menu")
 
         operations = [
             "Addition",
@@ -109,7 +108,7 @@ def classic_calculator(history):
         elif choice == Operations_menu.Show_operations_history:
             print('History of operations from classic calculator: ')
             for operation in classic_history:
-                print(operation)
+                print(operation)    
         elif choice == Operations_menu.Download_history:
             if len(history_for_csv) > 0:
                 download_operations_history()
@@ -137,8 +136,9 @@ def classic_calculator(history):
                 print("Result: ", exponentiation(x, y, history))
             elif choice == Operations_menu.Remainder:
                 print("Result: ", remainder(x, y, history))
-
+                
 
 if __name__ == "__main__":
     history = []
     classic_calculator()
+
